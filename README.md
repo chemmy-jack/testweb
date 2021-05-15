@@ -17,4 +17,13 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
     - programming paradigms
 - linux bird
 - FLP
-- 
+- string theory
+- electrical
+- introduction to computer science
+- about Internet
+
+## project list
+- Snake game
+- minesweeper game
+- typing practice (and learning)
+- high score board for above games

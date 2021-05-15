@@ -2,7 +2,14 @@
 ## lalala
 the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-jack.github.io/testweb/)
 
-## to do list
+## project list
+- Snake game
+- minesweeper game
+- typing practice (and learning)
+- pvp (maybe astro party ?)
+- high score board for above games
+
+## to learn list
 - programing languages
     - html
     - css
@@ -21,9 +28,9 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - electrical
 - introduction to computer science
 - about Internet
+- svg
+- web frameworks
+    - esp
+    - django
+- htm (?
 
-## project list
-- Snake game
-- minesweeper game
-- typing practice (and learning)
-- high score board for above games

@@ -9,6 +9,7 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - pvp (maybe astro party ?)
 - high score board for above games
 - telegram bot (?
+- tetris
 
 ## to learn list
 - programing languages

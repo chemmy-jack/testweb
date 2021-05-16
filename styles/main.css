@@ -6,6 +6,10 @@ body { font-family:Serif, "Times New Roman", Times, Serif; }
     padding: 0 ;
     overflow: hidden ;
     background-color: #333333 ;
+    width : 100% ;
+    position : fixed ;
+    top : 0 ;
+
 }
 
 #nav > li {

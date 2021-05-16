@@ -8,6 +8,7 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - typing practice (and learning)
 - pvp (maybe astro party ?)
 - high score board for above games
+- telegram bot (?
 
 ## to learn list
 - programing languages
@@ -32,6 +33,7 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - web frameworks
     - esp
     - django
+- web template system (server)
 - htm (?
 - ML
 - vim

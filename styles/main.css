@@ -5,3 +5,46 @@ body {
 h1 {
     color:blue ;
 }
+
+.title_examples {
+    background-image: url('https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.6435-9/169545651_10157815229632073_855839154918579033_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=730e14&_nc_ohc=ChZehZ4Ng3sAX9zKsBc&_nc_ht=scontent.ftpe7-2.fna&oh=85f59249910b04aa393437328183e5fb&oe=60C7AE3B');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+.title_examples h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+#table_ex {
+    width="width:100%";
+    border: 3px solid black ;
+    border-collapse: collapse ;
+    border-spacing: 5px ;
+}
+
+#table_ex th, td {
+    text-align: center ;
+    padding: 15px ;
+    border: 1px solid gray ;
+}
+
+.list_example ul {
+    list-style-type: square ;
+}
+
+#horizontal_list_ex {
+    list-style-type: none ;
+    margin: 0 ;
+    padding: 0 ;
+    overflow: hidden ;
+    background-color: #333333 ;
+}
+
+#horizontal_list_ex li {
+    float: left ;
+    color: white ;
+    padding: 16px ;
+}
+

@@ -32,4 +32,8 @@ ctx.font = "50px Comic Sans Times" ;
 ctx.textAlign = "center" ;
 ctx.fillText("hello World!", w/2, 100) ;
 
-// place image (skip)
+document.addEventListener('keydown', (event) => {
+    var name = event.key ;
+    var code = event.code ;
+    alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+}, false) ;

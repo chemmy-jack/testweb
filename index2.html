@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <!-- contains meta information -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="test">
+    <meta name="description" content="this is a test website of Jack's (form)">
+    <meta name="author" content="Chemmy-jack">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <base href="./" target="_blank">
+    <title>Jack Kuo's test page</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main2.css">
+</head>
+<body>
+    <ul id="nav">
+        <li><a href="./index.html" target="_self">home</a></li>
+        <li><a href="./index1.html">test1</a></li>
+        <li><a href="./index2.html">test2</a></li>
+    </ul>
+    <form id="form1" action="">
+        <label for="form_name">Name:</label>
+        <input type="text" id="form_name" value="Jack">
+        <br>
+        <label for="pwd">password:</label>
+        <input type="password" id="pwd" name="pwd">
+        <br>
+        <label for="gender">gender:</label>
+        <br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">male</label>
+        <br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">female</label>
+        <br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">other</label>
+        <br>
+        <label for="hobby">hobby:</label>
+        <br>
+        <input type="checkbox" id="hobby1" name="hobby1" value="hiking">
+        <label for="hobby1">hiking</label>
+        <br>
+        <input type="checkbox" id="hobby2" name="hobby2" value="jogging">
+        <label for="hobby2">jogging</label>
+        <br>
+        <input type="checkbox" id="hobby3" name="hobby3" value="reading">
+        <label for="hobby3">reading</label>
+        <br>
+        <input type="checkbox" id="hobby4" name="hobby4" value="biking">
+        <label for="hobby4">biking</label>
+        <br>
+        <input type="button" onclick="alert('Hello World!')" value="click me!">
+        <br>
+        <label for="favcolor">select your favorite color!</label>
+        <input type="color" id="favcolor" name="favcolor">
+        <br>
+        <label for="birthday">enter your birthday</label>
+        <input type="date" id="birthday" name="birthday">
+        <br>
+        <label for="birthdaytime">enter your birthdaytime</label>
+        <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+        <br>
+        <label for="email">enter your email</label>
+        <input type="email" id="email" name="email">
+        <br>
+        <label for"file">upload a file</label>
+        <input type="file" id="uploadfile" name="file">
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html> 

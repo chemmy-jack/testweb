@@ -124,9 +124,11 @@ let snake = {
             alert("body length: "+ this.body.length) ;
             return ;
         } ;
-        console.log("snake.head: ", this.head)
-        console.log("apple.position: ", apple.position)
-        if (this.head == apple.position) {
+        console.log("snake.head: ", this.head) ;
+        console.log("apple.position: ", apple.position) ;
+        console.log(this.head[0] === apple.position[0]) ;
+        console.log(this.head[1] === apple.position[1]) ;
+        if ((this.head[0] == apple.position[0]) && (this.head[1] == apple.position[1])) {
             console.log("apple eaten")
             apple.update() ;
             return ;
@@ -166,8 +168,8 @@ fill(snake.init)
 apple.update() ;
 async function start_snake() {
     while (snake.life && !(pause)) {
-        await sleep(dt) ;
         snake.update() ;
+        await sleep(dt) ;
     }
 }
 start_snake()

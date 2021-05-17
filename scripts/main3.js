@@ -88,24 +88,26 @@ let snake = {
     name : "snake" ,
     life : true ,
     color : "#00ff00" ,
+    head : [] ,
     new_head : function() {
-        head = this.body[this.body.length-1] ;
-        console.log("in new_head func, head: ",head)
+        let heady = this.body[this.body.length-1] ;
+        this.head = [heady[0],heady[1]] ;
+        console.log("in new_head func, head: ",this.head)
         switch (direction) {
             case "up" :
-                head[1] -= 1 ;
+                this.head[1] -= 1 ;
                 break ;
             case "left" :
-                head[0] -= 1 ;
+                this.head[0] -= 1 ;
                 break ;
             case "down" :
-                head[1] += 1 ;
+                this.head[1] += 1 ;
                 break ;
             case "right" :
-                head[0] += 1 ;
+                this.head[0] += 1 ;
                 break ;
         }
-        return head ;
+        return this.head ;
     } ,
     is_alive : function(first) {
         console.log("is alive?")
@@ -116,7 +118,7 @@ let snake = {
     update : function() { // add head -> check dead -> check eat
         console.log("update func activated!")
         new_head = this.new_head() ;
-        head = this.body[this.body.length-1] ;
+        let head = this.body[this.body.length-1] ;
         console.log("in update func, head: ",head)
         console.log("new head: ", new_head)
         console.log("body : ", this.body)

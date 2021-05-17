@@ -16,7 +16,7 @@ const hs = 10 ;
 const x0 = w/ws ;
 const y0 = h/hs ;
 const line_color = "#777777" ;
-let pause = true ;
+let pause = false ;
 function create_gridlines() {
     for ( i=0 ; i < ws ; i++ ) {
         var x = x0*i ;
@@ -68,7 +68,7 @@ document.addEventListener('keydown', (event) => {
 // create snake and apple
 function fill(p, obj=snake) {
     let x = p[0]*x0 ;
-    let y = p[0]*y0 ;
+    let y = p[1]*y0 ;
     if (obj == "erase") {
         ctx.clearRect(x,y,x0,y0) ;
         return ;
@@ -92,7 +92,6 @@ let snake = {
     new_head : function() {
         let heady = this.body[this.body.length-1] ;
         this.head = [heady[0],heady[1]] ;
-        console.log("in new_head func, head: ",this.head)
         switch (direction) {
             case "up" :
                 this.head[1] -= 1 ;
@@ -111,55 +110,50 @@ let snake = {
     } ,
     is_alive : function(first) {
         console.log("is alive?")
-        console.log("body : ", this.body)
-        console.log(first)
-        return !(this.body.containsArray(first)) ;
+        return !(this.body.containsArray(first)) && this.head[0] >= 0 && this.head[0] < ws && this.head[1] >= 0 && this.head[1] < hs  ;
     } ,
     update : function() { // add head -> check dead -> check eat
-        console.log("update func activated!")
         new_head = this.new_head() ;
         let head = this.body[this.body.length-1] ;
-        console.log("in update func, head: ",head)
-        console.log("new head: ", new_head)
-        console.log("body : ", this.body)
         if (this.is_alive(new_head)) {
             console.log("alive")
             this.body.push(new_head) ;
             fill(new_head, this) ;
         } else {
             this.life = false ;
-            console.log("body length: ", this.body.length)
             alert("body length: "+ this.body.length) ;
             return ;
-        }
-        if (new_head == [apple.x , apple.y]) {
+        } ;
+        console.log("snake.head: ", this.head)
+        console.log("apple.position: ", apple.position)
+        if (this.head == apple.position) {
+            console.log("apple eaten")
+            apple.update() ;
             return ;
-        }
-        else {
+        } else {
+            console.log("apple not eaten")
             fill(this.body.shift(), "erase") ;
-        }
+        } ;
     } ,
     body : [] ,
     init : [1,1]
 }
-console.log("snake body: ", snake.body)
 
 let apple = {
     name : "apple" ,
     color : "#ff0000" ,
-    x : 0 ,
-    y : 0 ,
+    position : [0,0] ,
     AppleNotInSnake : function() {
-        if (snake.body.find((a) => {return a == [this.x, this.y]})) { return true ; }
+        if (snake.body.containsArray(this.position)){ return true ; }
         return false ;
     } ,
     update : function() { // when eaten by snake
         do {
-            this.x = Math.floor(Math.random() * ws)
-            this.y = Math.floor(Math.random() * hs)
+            this.position[0] = Math.floor(Math.random() * ws)
+            this.position[1] = Math.floor(Math.random() * hs)
         } while (this.AppleNotInSnake()) ;
-        console.log("apple x,y : ", this.x, this.y) ;
-        fill([this.x,this.y], this) ;
+        console.log("apple position:, ", this.position)
+        fill(this.position, this) ;
     }
 }
 
@@ -169,10 +163,8 @@ function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 const dt = 500 ;
 snake.body = [snake.init] ;
 fill(snake.init)
-console.log("snake body: ", snake.body)
 apple.update() ;
 async function start_snake() {
-    console.log(!pause) ;
     while (snake.life && !(pause)) {
         await sleep(dt) ;
         snake.update() ;

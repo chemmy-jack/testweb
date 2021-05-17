@@ -66,6 +66,17 @@ document.addEventListener('keydown', (event) => {
 }, false) ;
 
 // create snake and apple
+function fill(p, obj=snake) {
+    let x = p[0]*x0 ;
+    let y = p[0]*y0 ;
+    if (obj == "erase") {
+        ctx.clearRect(x,y,x0,y0) ;
+        return ;
+    }
+    ctx.fillStyle = obj.color ;
+    ctx.fillRect(x,y,x0,y0) ;
+}
+
 Array.prototype.containsArray = function(val) {
     var hash = {};
         for(var i=0; i<this.length; i++) {
@@ -78,9 +89,8 @@ let snake = {
     life : true ,
     color : "#00ff00" ,
     new_head : function() {
-        console.log("new head activated, body = ", this.body) ;
         head = this.body[this.body.length-1] ;
-        console.log("head: ",head)
+        console.log("in new_head func, head: ",head)
         switch (direction) {
             case "up" :
                 head[1] -= 1 ;
@@ -106,6 +116,8 @@ let snake = {
     update : function() { // add head -> check dead -> check eat
         console.log("update func activated!")
         new_head = this.new_head() ;
+        head = this.body[this.body.length-1] ;
+        console.log("in update func, head: ",head)
         console.log("new head: ", new_head)
         console.log("body : ", this.body)
         if (this.is_alive(new_head)) {
@@ -125,7 +137,8 @@ let snake = {
             fill(this.body.shift(), "erase") ;
         }
     } ,
-    body : [[0,0]]
+    body : [] ,
+    init : [1,1]
 }
 console.log("snake body: ", snake.body)
 
@@ -144,31 +157,22 @@ let apple = {
             this.y = Math.floor(Math.random() * hs)
         } while (this.AppleNotInSnake()) ;
         console.log("apple x,y : ", this.x, this.y) ;
+        fill([this.x,this.y], this) ;
     }
 }
 
 // start movement
-function fill(p, obj=snake) {
-    let x = p[0]*x0 ;
-    let y = p[0]*y0 ;
-    if (obj == "erase") {
-        ctx.clearRect(x,y,x0,y0) ;
-        return ;
-    }
-    ctx.fillStyle = obj.color ;
-    ctx.fillRect(x,y,x0,y0) ;
-}
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 const dt = 500 ;
-// snake.body = [[0,0]] ;
+snake.body = [snake.init] ;
+fill(snake.init)
 console.log("snake body: ", snake.body)
 apple.update() ;
 async function start_snake() {
     console.log(!pause) ;
     while (snake.life && !(pause)) {
         await sleep(dt) ;
-        console.log("snake body: ", snake.body)
         snake.update() ;
     }
 }

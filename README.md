@@ -11,22 +11,40 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - telegram bot (?
 - tetris
 
+## order of learning
+- jquery
+- bootstrap
+- nodejs
+- vim
+- git
+- SQL
+- develope framework
+- web framework
+- java
+- ML
+- database such as mongodb
+- linux bird
+- phy
+    - string, quantam, electric
+    - Feynman Lecture
+
 ## to learn list
 - programing languages
     - html
     - css
         - bootstrap
     - js
-        - nodejs
         - jquery
+        - nodejs
+    - develope framework
+        - asp
     - java
     - cpp
-    - c sharp
     - SQL
     - programming paradigms
+    - go (?
+    - perl
 - linux bird
-- FLP
-- string theory
 - electrical
 - introduction to computer science
 - about Internet
@@ -34,8 +52,12 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - web frameworks
     - esp
     - django
+- mongo db
+- express
 - web template system (server)
-- xml (?
+- xml (? (graualy replaced by json
 - ML
 - vim
+- FLP
+- string theory
 

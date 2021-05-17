@@ -27,7 +27,7 @@ function create_gridlines() {
         draw_line(0,y,w,y) ;
     }
 }
-create_gridlines()
+// create_gridlines()
 
 // create direction and keyboard listening
 let direction = "right"
@@ -162,7 +162,7 @@ let apple = {
 // start movement
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
-const dt = 500 ;
+const dt = 250 ;
 snake.body = [snake.init] ;
 fill(snake.init)
 apple.update() ;

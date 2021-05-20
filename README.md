@@ -17,8 +17,9 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
 - nodejs
 - vim
 - git
-- SQL
-- develope framework
+- SQL (database)
+- js framework ( Vue, angular, radiac
+- develope framework (asp ?
 - web framework
 - java
 - ML
@@ -45,6 +46,7 @@ the website's link is : [https://chemmy-jack.github.io/testweb/](https://chemmy-
     - programming paradigms
     - go (?
     - perl
+    - scss ( from Vue
 - linux bird
 - electrical
 - introduction to computer science

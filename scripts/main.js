@@ -4,15 +4,11 @@ const nav_elements = [
     [ "test 1", "index1.html" ],
     [ "test 2", "index2.html" ]
 ]
-function set_nav() {
-    $("#nav").empty() ;
-    for ( var i = 0 ; i < nav_elements.length ; i++ ) {
-        let txta = $("<a></a>").text(nav_elements[i][0]).attr("href", nav_elements[i][1]) ;
-        let txt = $("<li></li>").text("") ;
-        $("#nav").append(txt.append(txta)) ;
-    }
+function set_nav(item, index) {
+    $("#nav").append($("<li></li>").text("").append($("<a></a>").text(item[0]).attr("href", item[1]))) ;
 }
 
 $(document).ready(function(){ // or you can type "$(function(){}"
-    set_nav()
+    $("#nav").empty() ;
+    nav_elements.forEach(set_nav) ;
 });

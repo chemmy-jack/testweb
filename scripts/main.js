@@ -1,3 +1,4 @@
+$("head").append("link").attr("rel", "icon").attr("type", "image/ico").attr("href", "images/favicon.ico") ;
 const nav_elements = [
     [ "home", "index.html" ],
     [ "snake game!", "index3.html" ],

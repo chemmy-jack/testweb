@@ -8,21 +8,22 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
     <base href="./" target="_blank">
     <title>Jack Kuo's test page</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/main3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/main.js"></script>
-    <link rel="shortcut icon" href="#"> <!-- this is for solving th favicon error -->
 </head>
 <body>
-    <ul id="nav">
-        <li><a href="./index.html" target="_self">home</a></li>
-        <li><a href="./index1.html">test1</a></li>
-        <li><a href="./index2.html">test2</a></li>
-        <li><a href="./index3.html">test3</a></li>
-    </ul>
-    <canvas id="snake_canvas" width="500" height="500">Your browser does not support canvas element !</canvas>
+    <nav></nav>
+    <div class="container fixed-bottom">
+        <div class="row dflex justify-content-center">
+            <div class="col-12">
+                <canvas class="dflex justify-content-center" id="snake_canvas">Your browser does not support canvas element !</canvas>
+            </div>
+        </div>
+    </div>
     <script src="scripts/main3.js"></script>
 </body>
 </html>

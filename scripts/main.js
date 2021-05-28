@@ -25,7 +25,6 @@ function PrintData() {
     }
 }
 
-$("head").append("link").attr("rel", "icon").attr("type", "image/ico").attr("href", "images/favicon.ico") ;
 const nav_elements = [
     [ "snake game!", "index3.html" ],
     [ "test 1", "index1.html" ],
@@ -36,11 +35,14 @@ function set_nav(item, index) {
 }
 
 $(document).ready(function(){ // or you can type "$(function(){}"
-    $.when(getdata()).then(function(tdata) {
-        data = tdata ;
-        PrintData() ;
-    }) ;
+    $("head").append("link").attr("rel", "icon").attr("type", "image/ico").attr("href", "images/favicon.ico") ;
     $("nav").attr("class", "navbar navbar-expand-sm bg-dark navbar-dark sticky-top").append($("<a></a>").attr("class", "navbar-brand").text("Logo").attr("hreff", "index.html")).append($("<ul></ul>").attr("class", "navbar-nav")) ;
     nav_elements.forEach(set_nav) ;
+    if (location.pathname == "index.html") {
+        $.when(getdata()).then(function(tdata) {
+            data = tdata ;
+            PrintData() ;
+        }) ;
+    } ;
 });
 

@@ -9,16 +9,94 @@
     <base href="./" target="_blank">
     <title>Jack Kuo's test page</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/main.js"></script>
 </head>
 <body>
-    <ul id="nav">
-    </ul>
-    <br>
-    <br>
-    <br>
-    <p>Look! Here is a paragraph!</p>
-    <button id="test_button" name="b1" >Click Me!</button>
+    <nav></nav>
+    
+    <div class="container">
+        <h1 class="display-1">display 1</h1>
+        <h6>this is a h6 header<small>and  this is secondary text in "small"</small></h6>
+        <p>this is a paragraph</p>
+        <div class="row">
+            <div class="col">.col text text text text text text text text text text</div>
+            <div class="col">.col text text text text text text text text text text</div>
+            <div class="col">.col text text text text text text text text text text</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="display-4">display 4</h1>
+        <h6>this is a h6 header<small>and  this is secondary text in "small"</small></h6>
+        <p class="text-center">this is a centered paragraph</p>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h1>Mark</h1>
+                    <p><mark>mark</mark> is used to highlight words.</p>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h1>Code</h1>
+                    <p>code will be showed as follows: <code>span</code>,<code>section</code>,<code>div</code>, </p>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h1>kbd</h1>
+                    <p>board key looks like this: <kbd>ctrl + p</kbd></p>
+                    <button class="btn btn-primary" type="button" id="printdata_btn" onclick="PrintData()">print data</button>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <h1>typography</h1>
+                    <p class="font-weight-bold">bold text</p>
+                    <p class="font-weight-bolder">bolder text</p>
+                    <p class="font-weight-light">light text</p>
+                    <p class="font-weight-lighter">lighter text</p>
+                    <p class="text-right">right aligned text</p>
+                    <p class="text-center">center aligned text</p>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h1>text colors</h1>
+                    <p class="text-mute">mute</p>
+                    <p class="text-primary">primary</p>
+                    <p class="text-success">success</p>
+                    <p class="text-info">info</p>
+                    <p class="text-warning">warning</p>
+                    <p class="text-danger">danger</p>
+                    <p class="text-secondary">secondary</p>
+                    <p class="text-white">white</p>
+                    <p class="text-dark">dark</p>
+                    <p class="text-body">body</p>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h1>bg colors</h1>
+                    <p class="bg-mute">mute</p>
+                    <p class="bg-primary">primary</p>
+                    <p class="bg-success">success</p>
+                    <p class="bg-info">info</p>
+                    <p class="bg-warning">warning</p>
+                    <p class="bg-danger">danger</p>
+                    <p class="bg-secondary">secondary</p>
+                    <p class="bg-white">white</p>
+                    <p class="bg-dark">dark</p>
+                    <p class="bg-body">body</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+            <h1>A paragraph form FLP</h1>
+                <p><blockquote>In this chapter we shall discuss one of the most far-reaching generalizations of the human mind. While we are admiring the human mind, we should take some time off to stand in awe of a nature that could follow with such completeness and generality such an elegantly simple principle as the law of gravitation. What is this law of gravitation? It is that every object in the universe attracts every other object with a force which for any two bodies is proportional to the mass of each and varies inversely as the square of the distance between them. This statement can be expressed mathematically by the equation.</blockquote></p>
+                <footer class="blockquote-footer">From Richard Feynman</footer>
+            </div>
+            <div class="table col-12" id="testtable">
+                <h1>test table</h1>
+                <table>
+                    <thead> <tr> </tr> </thead> <tbody> </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

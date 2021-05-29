@@ -1,3 +1,5 @@
+$("head").append("link").attr("rel", "icon").attr("type", "image/ico").attr("href", "images/favicon.ico") ;
+home_path = "/index.html" ;
 function getdata() {
     let data_url = "https://data.epa.gov.tw/api/v1/aqx_p_136?format=json&limit=2000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9" ;
     return $.getJSON(data_url) ; 
@@ -36,10 +38,9 @@ function set_nav(item, index) {
 }
 
 $(document).ready(function(){ // or you can type "$(function(){}"
-    $("head").append("link").attr("rel", "icon").attr("type", "image/ico").attr("href", "images/favicon.ico") ;
-    $("nav").attr("class", "navbar navbar-expand-sm bg-dark navbar-dark sticky-top").append($("<a></a>").attr("class", "navbar-brand").text("Logo").attr("hreff", "index.html")).append($("<ul></ul>").attr("class", "navbar-nav")) ;
+    $("nav").attr("class", "navbar navbar-expand-sm bg-dark navbar-dark sticky-top").append($("<a></a>").attr("class", "navbar-brand").text("Logo").attr("href", home_path)).append($("<ul></ul>").attr("class", "navbar-nav")) ;
     nav_elements.forEach(set_nav) ;
-    if (location.pathname == "index.html") {
+    if (location.pathname == home_path) {
         $.when(getdata()).then(function(tdata) {
             data = tdata ;
             PrintData() ;

@@ -17,10 +17,29 @@
 </head>
 <body>
     <nav></nav>
-    <div class="container fixed-bottom">
-        <div class="row dflex justify-content-center">
+    <div class="container">
+        <div class="row">
             <div class="col-12">
-                <canvas class="dflex justify-content-center" id="snake_canvas">Your browser does not support canvas element !</canvas>
+                <canvas class="" id="snake_canvas">Your browser does not support canvas element !</canvas>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6" id="bturnl"><button class="btn btn-block btn-primary bt-lg" type="button" onclick="turnl()">left</button></div>
+                    <div class="col-6" id="bturnr"><button class="btn btn-block btn-primary bt-lg" type="button" onclick="turnr()">right</button></div>
+                    <div class="col" id="bmap">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-block btn-secondary dropdown-toggle" data-toggle="dropdown" >choose map</button>
+                            <div class="dropdown-menu">
+                                <button class="dropdown-item" onclick="map.changeto1()">map1</button>
+                                <button class="dropdown-item" onclick="map.changeto2()">map2</button>
+                                <button class="dropdown-item" onclick="map.changeto3()">map3</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" id="startpause"><button class="btn btn-block btn-secondary" onclick="togglepause()">&#9654 / &#9208</button></div>
+                    <div class="col" id="restart"><button class="btn btn-block btn-secondary" onclick="restart()">restart</button></div>
+                    <div class="col" id="score"><button class="btn btn-block btn-secondary disabled">score</button></div>
+                </div>
             </div>
         </div>
     </div>

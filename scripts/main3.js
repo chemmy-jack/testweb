@@ -10,22 +10,22 @@ function update_direction(key) {
     switch (key) {
         case "w" :
         case "ArrowUp" :
-            if (direction == "down" || pause ) { return ; } ;
+            if (direction == "down" || pause || !snake.life ) { return ; } ;
             direction = "up" ;
             break ;
         case "a" :
         case "ArrowLeft" :
-            if (direction == "right" || pause ) { return ; } ;
+            if (direction == "right" || pause || !snake.life ) { return ; } ;
             direction = "left" ;
             break ;
         case "s" :
         case "ArrowDown" :
-            if (direction == "up" || pause ) { return ; } ;
+            if (direction == "up" || pause || !snake.life ) { return ; } ;
             direction = "down" ;
             break ;
         case "d" :
         case "ArrowRight" :
-            if (direction == "left" || pause ) { return ; } ;
+            if (direction == "left" || pause || !snake.life ) { return ; } ;
             direction = "right" ;
             break ;
         case "p" :
@@ -90,31 +90,18 @@ Array.prototype.containsArray = function(val) {
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
-// var snake_canvas = document.getElementById("snake_canvas") ;
-// console.log(snake_canvas) ;
 const temp = $("#snake_canvas") ;
 temp.css("border", "5px solid #000") ;
-// console.log($(".container-fluid").width()) ;
-let d = 300 ;
-temp.css("width", toString(d) + "px") ;
-// temp.css("width", "auto") ;
 temp.css("width", "100%") ;
-temp.css("align", "center") ;
 const snake_canvas = temp[0] ;
 const ctx = snake_canvas.getContext("2d") ;
 const w = 600 ;
 const h = 600 ;
 snake_canvas.width = w ;
 snake_canvas.height = h ;
-
-// create gridlines for 10x10
-let ws = 20 ;
-let hs = 20 ;
-let x0 = w/ws ;
-let y0 = h/hs ;
 let line_color = "#777777" ;
-let pause = true ;
-let dt = (ws + hs) * 5 ;
+
+let ws, hs, x0, y0, dt, pause ;
 
 // create direction and keyboard listening
 let direction = "right"
@@ -122,8 +109,6 @@ let direction = "right"
 document.addEventListener('keydown', (event) => {
     update_direction(event.key) ;
 }, false) ;
-
-// create snake and apple
 
 let snake = {
     name : "snake" ,
@@ -207,12 +192,11 @@ function initiate_game() {
     $("#score > button").text(snake.body.length) ;
     direction = "right" ,
     ctx.clearRect(0, 0, w, h) ;
-    pause = false ;
+    pause = true ;
     snake.body = [snake.init] ;
     fill(snake.init)
     apple.update() ;
 }
-initiate_game() ;
 
 const map = {
     changeto1 : function() { this.change(10) ; } ,
@@ -223,10 +207,16 @@ const map = {
         hs = side_length ;
         x0 = w/ws ;
         y0 = h/hs ;
+        dt = (ws + hs) * 5 ;
         initiate_game() ;
-        let dt = (ws + hs) * 5 ;
     }
 } ;
+map.changeto2() ;
+
+
+// create snake and apple
+
+
 
 // start movement
 

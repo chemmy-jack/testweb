@@ -26,6 +26,7 @@ function PrintData() {
 }
 
 const nav_elements = [
+    [ "mine sweeper", "index4.html" ],
     [ "snake game!", "index3.html" ],
     [ "test 1", "index1.html" ],
     [ "test 2", "index2.html" ]

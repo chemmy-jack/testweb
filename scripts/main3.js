@@ -49,7 +49,7 @@ function togglepause() {
     if (snake.life) {
         pause = !pause ;
         if (!pause) { start_snake() ; }
-    }
+    } else { restart() }
 }
 
 function turnl() {turn(false)}
@@ -63,9 +63,10 @@ function turn(is_right) {
     else { direction = direction_pool[current_direction_index - 1] }
 }
 
-function restart() {
-    pause = true ;
+async function restart() {
+    // pause = true ;
     initiate_game() ;
+    if (!pause && !snake.life) { start_snake() } ;
     snake.life = true ;
 }
 
@@ -101,7 +102,8 @@ snake_canvas.width = w ;
 snake_canvas.height = h ;
 let line_color = "#777777" ;
 
-let ws, hs, x0, y0, dt, pause ;
+let ws, hs, x0, y0, dt ;
+let pause = true ;
 
 // create direction and keyboard listening
 let direction = "right"
@@ -147,7 +149,7 @@ let snake = {
             fill(new_head, this) ;
         } else {
             this.life = false ;
-            pause = true ;
+            // pause = true ;
             // alert("body length: "+ this.body.length) ;
             return ;
         } ;
@@ -192,7 +194,7 @@ function initiate_game() {
     $("#score > button").text(snake.body.length) ;
     direction = "right" ,
     ctx.clearRect(0, 0, w, h) ;
-    pause = true ;
+    // pause = true ;
     snake.body = [snake.init] ;
     fill(snake.init)
     apple.update() ;
@@ -208,7 +210,7 @@ const map = {
         x0 = w/ws ;
         y0 = h/hs ;
         dt = (ws + hs) * 5 ;
-        initiate_game() ;
+        restart() ;
     }
 } ;
 map.changeto2() ;

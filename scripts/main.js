@@ -39,7 +39,7 @@ function set_nav(item, index) {
 
 $(document).ready(function(){ // or you can type "$(function(){}"
     $("nav")
-        .attr("class", "navbar navbar-expand-xs bg-dark navbar-dark sticky-top")
+        .attr("class", "navbar navbar-expand-sm bg-dark navbar-dark sticky-top")
         .append($("<div></div>") .attr("class", "container-fluid")
                 .append($("<a></a>") .attr("class", "navbar-brand") .text("Logo") .attr("href", home_path))
                 .append($("<button></button>")

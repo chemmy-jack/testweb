@@ -38,7 +38,21 @@ function set_nav(item, index) {
 }
 
 $(document).ready(function(){ // or you can type "$(function(){}"
-    $("nav").attr("class", "navbar navbar-expand-sm bg-dark navbar-dark sticky-top").append($("<a></a>").attr("class", "navbar-brand").text("Logo").attr("href", home_path)).append($("<ul></ul>").attr("class", "navbar-nav")) ;
+    $("nav")
+        .attr("class", "navbar navbar-expand-xs bg-dark navbar-dark sticky-top")
+        .append($("<div></div>") .attr("class", "container-fluid")
+                .append($("<a></a>") .attr("class", "navbar-brand") .text("Logo") .attr("href", home_path))
+                .append($("<button></button>")
+                    .attr("type", "button")
+                    .attr("class", "navbar-toggler ml-auto float-xs-right pull-right navbar-toggler-right")
+                    .attr("data-toggle", "collapse")
+                    .attr("data-target", "#navbar")
+                    .attr("aria-expanded", "false")
+                    .attr("aria-controls", "navbar")
+                    .attr("aria-label", "Toggle navigation")
+                        .append($("<span></span>") .attr("class", "navbar-toggler-icon")))
+            .append($("<div></div>") .attr("class", "navbar-collapse collapse") .attr("id", "navbar")
+                .append($("<ul></ul>") .attr("class", "navbar-nav ")))) ;
     nav_elements.forEach(set_nav) ;
     if (location.pathname == home_path) {
         $.when(getdata()).then(function(tdata) {

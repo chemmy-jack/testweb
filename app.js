@@ -3,16 +3,7 @@ const fs = require('fs');
 const url = require('url');
 const util = require('util');
 const webSocketServer = require('ws').Server;
-const httpport = 8000;
-const websocketport = 80;
-
-var wserver = new webSocketServer({port: websocketport});
-
-wserver.on('connection', function(ws) {
-    ws.on('message', function(message) {
-        console.log("recieved from websocket: "+message);
-    });
-});
+const httpport = 80;
 
 function afterDotToFileType(afterDot) {
     switch (afterDot) {

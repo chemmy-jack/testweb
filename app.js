@@ -2,7 +2,11 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 const util = require('util');
-const port = 80;
+const webSocketServer = require('ws').Server;
+const httpport = 80;
+const websocketport = 80;
+
+var ws = new webSocketServer({port: websocketport});
 
 function afterDotToFileType(afterDot) {
     switch (afterDot) {
@@ -19,7 +23,8 @@ function afterDotToFileType(afterDot) {
             return "text/css";
             break;
     }
-}
+};
+
 
 // the function to call every time it recieves request
 const server = http.createServer(function(req, res) {
@@ -42,10 +47,10 @@ const server = http.createServer(function(req, res) {
 });
 
 // to set up the server to listen on the port
-server.listen(port, function(error) {
+server.listen(httpport, function(error) {
     if (error) {
         console.log('Something went wrong', error)
     } else {
-        console.log('Server is listening on port :' + port)
+        console.log('Server is listening on port :' + httpport)
     }
 });

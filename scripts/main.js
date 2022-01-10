@@ -37,20 +37,6 @@ function set_nav(item, index) {
     $(".navbar-nav").append($("<li></li>").attr("class", "nav-item").append($("<a></a>").attr("class", "nav-link").text(item[0]).attr("href", item[1]))) ;
 }
 
-const socket = new WebSocket("wss://140.83.57.234")
-
-socket.onopen = function(event) {
-    alert('Socket connected successfully');
-    console.log(event);
-    setTimeout(function() {
-        socket.send("hey there");
-    }, 1000);
-};
-
-socket.onmessage = function(event) {
-    console.log(event);
-};
-
 $(document).ready(function(){ // or you can type "$(function(){}"
     $("nav")
         .attr("class", "navbar navbar-expand-sm bg-dark navbar-dark sticky-top")

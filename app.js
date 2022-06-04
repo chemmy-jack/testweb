@@ -20,7 +20,7 @@ function afterDotToFileType(afterDot) {
             return "text/css";
             break;
         case "json" :
-            return "application/json;
+            return "application/json";
             break;
     }
     return "text/plain" ;

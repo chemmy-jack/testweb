@@ -121,13 +121,15 @@ ws_server.on('connection', function(socket) {
                 break;
             case "answer":
                 if(answerIsCorrct(recieved_data)){
-                    if(nextProblem(recieved_data.team)){
+                    if(!nextProblem(recieved_data.team)){
                         json_to_send = JSON.stringify(
                             {
                                 "method": "the_end",
                                 "team": recieved_data.team
                             }
                         );
+                        sockets.forEach(s => s.send(json_to_send));
+                        break;
                     };
                     success =true
                 }else{
@@ -173,7 +175,7 @@ ws_server.on('connection', function(socket) {
 
 function skipProblem(team){
     console.log("skip Problem for " + team);
-    database.team_list[team].push(data.team_list.current);
+    database.team_list[team].push(database.team_list.current);
     return nextProblem(team);
 }
 
@@ -186,6 +188,7 @@ function nextProblem(team){
         next_Problem_number = ~~( database.team_list[team].remaining.length * Math.random() );
         console.log(next_Problem_number);
         console.log(database.team_list[team].remaining[next_Problem_number]);
+        database.team_list[team].finnished.push(database.team_list.current);
         database.team_list[team].current = database.team_list[team].remaining[next_Problem_number];
         database.team_list[team].remaining.splice(next_Problem_number, 1)
         return true;
@@ -212,6 +215,8 @@ function JSONtoSendProblem(team){
         "img_path": image_path,
         "chance_remaining": database.team_list.chance_remaining,
         "team": team,
+        "finnished_problems": database.team_list.finnished.length(),
+        "remaining_problems": database.team_list.remaining.length()
     };
     return {
         "method": "all_done",

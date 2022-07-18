@@ -1,13 +1,17 @@
 let server_ip = "124.218.222.22";
 let websocket_port = 8001;
 let websocket_url = "ws://" + server_ip + ":" + websocket_port;
-let not_init = true;
+let not_login = true;
 const socket = new WebSocket(websocket_url) ;
 
-socket.onopen = function(event) {
-    console.log("socket succesful connected to" + websocket_url);
-    console.log(event);
-}
+try {
+    socket.onopen = function(event) {
+        console.log("socket successful connected to" + websocket_url);
+        console.log(event);
+    }
+}catch{
+    alert("websocket not established. refresh the page or contact the host.")
+};
 
 socket.onmessage = function(event) {
     console.log("got ws msg");
@@ -15,22 +19,39 @@ socket.onmessage = function(event) {
     var recieved_data = JSON.parse(event.data);
     // only for testing
     console.log(recieved_data);
-    if(recieved_data.method == "init_reply"){
-        if(recieved_data.successful){
-            $("#problem-body").toggle(0);
-            // $("#login-body").toggle(0);
-            $("#team-input").addClass("disabled readonly").attr("disabled", "true");
-            $("#password-input").addClass("disabled readonly").attr("disabled", "true");
-            $("#login-button").addClass("disabled");
-        }else if(!recieved_data.successful)(
-            alert("login failed!!")
-        );
-    }else if(recieved_data.method == "answer_reply"){
-        if (recived_data.skipped){
-            alert("skipped!!")
+    if(recieved_data.team == $("#team-input").val()){
+        switch(recieved_data.method){
+            case "login_reply":
+                if(recieved_data.successful){
+                    $("#problem-body").toggle(0);
+                    // $("#login-body").toggle(0);
+                    $("#team-input").addClass("disabled readonly").attr("disabled", "true");
+                    $("#password-input").addClass("disabled readonly").attr("disabled", "true");
+                    $("#login-button").addClass("disabled");
+                }else if(!recieved_data.successful)(
+                    alert("login failed!!")
+                );
+                break;
+            case "problem":
+                $("#problem-image").attr("src", recieved_data.img_path)
+                $("#problem-discription").text(recieved_data.discription);
+                break;
+            case "answer_reply":
+                if (recieved_data.success){
+                    alert("answer correct");
+                }else if (!recieved_data.success){
+                    alert("answer incorrect");
+                }
+                break;
+            case "skip_reply":
+                alert("skipped")
+                break;
+            case "the_end":
+                alert("the end")
+                break;
         };
     };
-}
+};
 
 
 $(document).ready(function(){ // or you can type "$(function(){}"
@@ -42,7 +63,7 @@ $(document).ready(function(){ // or you can type "$(function(){}"
     $("#login-button").click(function(){
         send_JSON =
             {
-                "method": "init",
+                "method": "login",
                 "team" : $("#team-input").val(),
                 "password" : $("#password-input").val(),
             };

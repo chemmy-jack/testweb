@@ -68,7 +68,7 @@
         {
             "img_path": "Q13.jpg",
             "discription": "此區地下街共有幾個燈籠？",
-            "answer": ""
+            "answer": "82"
         },
         {
             "img_path": "Q14.jpg",
@@ -117,8 +117,8 @@
         }
     ],
     "team_list": {
-        "one": {
-            "password": "pwd",
+        "Feynman": {
+            "password": "Richard",
             "finnished": [],
             "skipped": [],
             "remaining": [
@@ -146,10 +146,11 @@
                 21,
                 22
             ],
-            "current": -1
+            "current": -1,
+            "chance_remaining": 5
         },
-        "two": {
-            "password": "pwd",
+        "homo": {
+            "password": "sapiens",
             "finnished": [],
             "skipped": [],
             "remaining": [
@@ -177,10 +178,11 @@
                 21,
                 22
             ],
-            "current": -1
+            "current": -1,
+            "chance_remaining": 5
         },
-        "three": {
-            "password": "pwd",
+        "Robert": {
+            "password": "Baden-Powell",
             "finnished": [],
             "skipped": [],
             "remaining": [
@@ -208,10 +210,11 @@
                 21,
                 22
             ],
-            "current": -1
+            "current": -1,
+            "chance_remaining": 5
         },
-        "four": {
-            "password": "pwd",
+        "617": {
+            "password": "617",
             "finnished": [],
             "skipped": [],
             "remaining": [
@@ -239,7 +242,8 @@
                 21,
                 22
             ],
-            "current": -1
+            "current": -1,
+            "chance_remaining": 5
         }
     }
 }

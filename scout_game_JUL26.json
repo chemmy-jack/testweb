@@ -3,22 +3,22 @@
         {
             "img_path": "Q0.jpg",
             "discription": "這張圖中共有多少隻動物？",
-            "answer": ""
+            "answer": "12"
         },
         {
             "img_path": "Q1.jpg",
-            "discription": "",
-            "answer": ""
+            "discription": "圖中被遮住的路標為何？",
+            "answer": "停車場"
         },
         {
             "img_path": "Q2.jpg",
-            "discription": "",
-            "answer": ""
+            "discription": "請依序打出第1句第二個字，和第2句第二個字",
+            "answer": "點頭"
         },
         {
             "img_path": "Q3.jpg",
-            "discription": "",
-            "answer": ""
+            "discription": "圖中黑色區塊的第二行中文字為何？",
+            "answer": "國民旅遊卡"
         },
         {
             "img_path": "Q4.jpg",
@@ -42,8 +42,8 @@
         },
         {
             "img_path": "Q8.jpg",
-            "discription": "",
-            "answer": ""
+            "discription": "途中被遮住的店家中文名為何？",
+            "answer": "莫凡彼餐廳"
         },
         {
             "img_path": "Q9.jpg",
@@ -67,8 +67,8 @@
         },
         {
             "img_path": "Q13.jpg",
-            "discription": "此區地下街共有幾個燈籠？",
-            "answer": "82"
+            "discription": "圖中黑色區塊為何物？",
+            "answer": "時鐘"
         },
         {
             "img_path": "Q14.jpg",
@@ -77,13 +77,13 @@
         },
         {
             "img_path": "Q15.jpg",
-            "discription": "此燈籠位於何區地下街？",
-            "answer": "K區"
+            "discription": "此區地下街共有幾個燈籠？",
+            "answer": ""
         },
         {
             "img_path": "Q16.jpg",
             "discription": "利用永備尺量此同心圓的最大半徑",
-            "answer": ""
+            "answer": "2.52m"
         },
         {
             "img_path": "Q17.jpg",

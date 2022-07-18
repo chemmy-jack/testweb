@@ -1,0 +1,245 @@
+{
+    "problem_list": [
+        {
+            "img_path": "Q0.jpg",
+            "discription": "這張圖中共有多少隻動物？",
+            "answer": ""
+        },
+        {
+            "img_path": "Q1.jpg",
+            "discription": "",
+            "answer": ""
+        },
+        {
+            "img_path": "Q2.jpg",
+            "discription": "",
+            "answer": ""
+        },
+        {
+            "img_path": "Q3.jpg",
+            "discription": "",
+            "answer": ""
+        },
+        {
+            "img_path": "Q4.jpg",
+            "discription": "畫面中的黑色區塊中的英文與數字為何？",
+            "answer": "SEF10"
+        },
+        {
+            "img_path": "Q5.jpg",
+            "discription": "畫面中的黑色區塊中的英文與數字為何？",
+            "answer": "E07"
+        },
+        {
+            "img_path": "Q6.jpg",
+            "discription": "畫面中所指區塊的數字為何？",
+            "answer": "1720"
+        },
+        {
+            "img_path": "Q7.jpg",
+            "discription": "距離迷克夏還有幾公分？",
+            "answer": "200"
+        },
+        {
+            "img_path": "Q8.jpg",
+            "discription": "",
+            "answer": ""
+        },
+        {
+            "img_path": "Q9.jpg",
+            "discription": "畫面中的黑色區塊中的中文為何？",
+            "answer": "君品酒店"
+        },
+        {
+            "img_path": "Q10.jpg",
+            "discription": "地圖中被遮住的圖示代表什麼？",
+            "answer": "捷運捐血室"
+        },
+        {
+            "img_path": "Q11.jpg",
+            "discription": "這篇文章的名稱為何？",
+            "answer": "近乎佛教徒"
+        },
+        {
+            "img_path": "Q12.jpg",
+            "discription": "畫面中的黑色區塊中的中文為何？",
+            "answer": "立即下載"
+        },
+        {
+            "img_path": "Q13.jpg",
+            "discription": "此區地下街共有幾個燈籠？",
+            "answer": ""
+        },
+        {
+            "img_path": "Q14.jpg",
+            "discription": "此風機室的編號為何？",
+            "answer": "M77"
+        },
+        {
+            "img_path": "Q15.jpg",
+            "discription": "此燈籠位於何區地下街？",
+            "answer": "K區"
+        },
+        {
+            "img_path": "Q16.jpg",
+            "discription": "利用永備尺量此同心圓的最大半徑",
+            "answer": ""
+        },
+        {
+            "img_path": "Q17.jpg",
+            "discription": "",
+            "answer": ""
+        },
+        {
+            "img_path": "Q18.jpg",
+            "discription": "這張臉譜是誰？",
+            "answer": "關羽"
+        },
+        {
+            "img_path": "Q19.jpg",
+            "discription": "畫面中的黑色區塊中的中文為何？",
+            "answer": "一家人之霹靂民俗藝廊"
+        },
+        {
+            "img_path": "Q20.jpg",
+            "discription": "將1-2、2-7、3-2、3-4、4-1重新組合成一個單字",
+            "answer": "scout"
+        },
+        {
+            "img_path": "Q21.jpg",
+            "discription": "以右手邊第一間店的招牌找出對應數字，並算出總合",
+            "answer": "49"
+        },
+        {
+            "img_path": "Q22.jpg",
+            "discription": "此店的門牌號碼為何？",
+            "answer": "117"
+        }
+    ],
+    "team_list": {
+        "one": {
+            "password": "pwd",
+            "finnished": [],
+            "skipped": [],
+            "remaining": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22
+            ],
+            "current": -1
+        },
+        "two": {
+            "password": "pwd",
+            "finnished": [],
+            "skipped": [],
+            "remaining": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22
+            ],
+            "current": -1
+        },
+        "three": {
+            "password": "pwd",
+            "finnished": [],
+            "skipped": [],
+            "remaining": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22
+            ],
+            "current": -1
+        },
+        "four": {
+            "password": "pwd",
+            "finnished": [],
+            "skipped": [],
+            "remaining": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22
+            ],
+            "current": -1
+        }
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <!-- contains meta information -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="test">
+    <meta name="description" content="this is a test website of Jack's">
+    <meta name="author" content="Chemmy-jack">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <base href="./" target="_blank">
+    <title>Jack Kuo's test page</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="scripts/scout_game_JUL26.js"></script>
+</head>
+<body>
+    <div class="container text-center" id="head"><h1>飛岳北車地下街闖關</h1></div>
+    <div id="login-body" class="container">
+        <div class="row">
+            <div class="col-12 d-flex">
+                <div class="col d-flex align-items-center">
+                    <div class="input-group">
+                        <div class="input-group-text" id="team">小隊</div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="team" id="team-input">
+                    </div>
+                </div>
+                <div class="col d-flex align-items-center">
+                    <div class="input-group">
+                        <div class="input-group-text" id="password">密碼</div>
+                        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="password" id="password-input">
+                    </div>
+                </div>
+                <div class="co d-flex align-items-center">
+                    <button type="button" class="btn btn-success" id="login-button">login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="problem-body" class="container">
+        <div class="row">
+            <div class="col-6">你總共可以嘗試<span id="max-try-number">__</span>次</div>
+            <div class="col-6">剩下<span id="chances-remaning">__</span>次機會</div>
+        </div>
+        <div class="row">
+            <div class="col-12" id="problem">
+                <div id="problem-discription">discription</div>
+                <img id="problem-image"class="img-fluid img-thumbnail" src="" alt="question image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex align-items-center">
+                <div class="input-group">
+                    <div class="input-group-text" id="answer">答案</div>
+                    <input type="text" class="form-control" placeholder="請填入你的答案" aria-label="請填入你的答案" aria-describedby="answer-input" id="answer-input">
+                </div>
+                <div class="p-2 flex text-center btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-success" id="send-button">send</button>
+                    <button type="button" class="btn btn-danger" id="skip-button">skip</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="billboard">公佈欄</div>
+</body>
+</html>

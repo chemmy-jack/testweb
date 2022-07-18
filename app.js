@@ -3,8 +3,8 @@ const fs = require('fs');
 const url = require('url');
 const util = require('util');
 const WebSocket = require('ws');
-const httpport = 8888;
-const websocketport = 8080;
+const httpport = 8000;
+const websocketport = 8001;
 
 
 

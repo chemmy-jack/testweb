@@ -1,5 +1,5 @@
-let server_ip = "localhost";
-let websocket_port = 8080;
+let server_ip = "124.218.222.22";
+let websocket_port = 8001;
 let websocket_url = "ws://" + server_ip + ":" + websocket_port;
 let not_init = true;
 const socket = new WebSocket(websocket_url) ;

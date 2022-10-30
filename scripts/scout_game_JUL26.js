@@ -35,12 +35,17 @@ socket.onmessage = function(event) {
             case "problem":
                 $("#problem-image").attr("src", recieved_data.img_path)
                 $("#problem-discription").text(recieved_data.discription);
+                $("#problem-discription").text(recieved_data.discription);
+                $("#chances-remaning").text(recieved_data.chances_remaining);
+                $("#finnished_problems").text(recieved_data.finnished_problems);
+                $("#remaining_problems").text(recieved_data.remaining_problems);
                 break;
             case "answer_reply":
                 if (recieved_data.success){
                     alert("answer correct");
                 }else if (!recieved_data.success){
                     alert("answer incorrect");
+                $("#chances-remaning").text(recieved_data.chances_remaining);
                 }
                 break;
             case "skip_reply":
@@ -50,8 +55,15 @@ socket.onmessage = function(event) {
                 alert("the end")
                 break;
         };
+    }else if(recieved_data.method == "announcement"){
+        $("#announcement").text(recieved_data.announcement);
     };
 };
+
+socket.onclose = function(e) {
+    console.log("socket closed");
+    alert("Connection lost, refresh is recommended.")
+}
 
 
 $(document).ready(function(){ // or you can type "$(function(){}"
@@ -71,6 +83,10 @@ $(document).ready(function(){ // or you can type "$(function(){}"
         socket.send(JSON.stringify(send_JSON));
     });
     $("#send-button").click(function(){
+        if (parseInt( $("#chances-remaning").text(), 10 ) <= 0){
+            alert("no chances for you any more");
+            return;
+        };
         if (confirm("Are you sure you want to send answer?")){
             img_src_split = $("#problem-image").attr("src").split("/");
             problem_number = img_src_split[img_src_split.length - 1].slice(1,-4);
@@ -88,6 +104,8 @@ $(document).ready(function(){ // or you can type "$(function(){}"
     });
     $("#skip-button").click(function(){
         if(confirm("Are you sure you want to skip?")){
+            img_src_split = $("#problem-image").attr("src").split("/");
+            problem_number = img_src_split[img_src_split.length - 1].slice(1,-4);
             send_JSON =
                 {
                     "method": "skip",

@@ -27,6 +27,9 @@ function afterDotToFileType(afterDot) {
         case "css" :
             return "text/css";
             break;
+        case "json" :
+            return "application/json";
+            break;
     }
 };
 
@@ -61,7 +64,12 @@ const server = http.createServer(function(req, res) {
         console.log("here is a post request");
         // let path = url.parse(req.url, true);
         // console.log(path);
-        console.log(req);
+        try{
+            console.log(req);
+            console.log(req.json());
+        }catch(err){
+            console.log(err);
+        }
     } else {
         console.log("not recongnized method: "+ req.method);
     }
@@ -80,12 +88,15 @@ server.listen(httpport, function(error) {
 // game
 // // // // // // // // // //
 // read database
-let database_raw = fs.readFileSync("scout_game_JUL26.json");
-let database = JSON.parse(database_raw);
-console.log("this is the database")
-console.log(database);
+let database_team_path = "scout_game_JUL26_team_list.json";
+let database_problem_path = "scout_game_JUL26_problem_list.json";
+let database_team_raw = fs.readFileSync(database_team_path);
+let database_problem_raw = fs.readFileSync(database_problem_path);
+let database_team = JSON.parse(database_team_raw);
+let database_problem = JSON.parse(database_problem_raw);
+console.log(database_team);
+console.log(database_problem);
 
-// websocket server end
 const ws_server = new WebSocket.Server({
     port : websocketport
 });
@@ -93,8 +104,28 @@ console.log("websocket on: " + websocketport);
 
 let sockets = [];
 
-ws_server.on('connection', function(socket) {
-    sockets.push(socket);
+
+let announcement_str = fs.readFileSync("announcement.txt", "utf8");
+console.log(announcement_str);
+
+// for godmode //
+
+let godmode_websocketport = 8002 ;
+let godmode_sockets = [];
+const godmode_ws_server = new WebSocket.Server({
+    port : godmode_websocketport
+});
+console.log("godmode websocket on: " + godmode_websocketport);
+
+godmode_ws_server.on('connection', function(socket) {
+    godmode_sockets.push(socket);
+    console.log("someone opened godmode");
+    socket.send(JSON.stringify(
+        {
+            "method": "announcement",
+            "announcement": announcement_str
+        }
+    ));
     socket.on('message', function(msg) {
         let recieved_data;
         try {
@@ -107,15 +138,84 @@ ws_server.on('connection', function(socket) {
             return 0;
         };
 
+        switch (recieved_data.method) {
+            case "announce":
+                announcement_str = recieved_data.announcement;
+                godmode_sockets.filter(s => s !== socket).forEach(s => s.send(JSON.stringify(
+                    {
+                        "method": "announcement",
+                        "announcement": announcement_str
+                    }
+                )));
+                sockets.forEach(s => s.send(JSON.stringify(
+                    {
+                        "method": "announcement",
+                        "announcement": announcement_str
+                    }
+                ))
+                );
+                fs.writeFileSync("announcement.txt", announcement_str)
+                break;
+        }
+    });
+    socket.on('close', function() {
+        sockets = sockets.filter(s => s !== socket);
+    });
+});
+// godmode end //
+
+ws_server.on('connection', function(socket) {
+    sockets.push(socket);
+    json_to_send = JSON.stringify(
+        {
+            "method": "announcement",
+            "announcement": announcement_str
+        }
+    );
+    socket.send(json_to_send);
+    socket.on('message', function(msg) {
+        let recieved_data;
+        try {
+            recieved_data = JSON.parse(msg);
+            console.log(recieved_data);
+        } catch(error) {
+            console.log("not json");
+            console.log("error: " + error.message);
+            console.log("message: \n" + msg);
+            return 0;
+        };
+
+        try{
+            console.log(database_team[recieved_data.team]);
+            if (database_team[recieved_data.team].remaining.length == 0) {
+                json_to_send = JSON.stringify(
+                    {
+                        "method": "the_end",
+                        "team": recieved_data.team
+                    }
+                );
+                sockets.forEach(s => s.send(json_to_send));
+            }
+        } catch(error) {
+            console.log(error.message);
+        };
+
         let success = false;
         switch (recieved_data.method) {
             case "login":
-                if(recieved_data.team in database.team_list){
-                    if(recieved_data.password == database.team_list[recieved_data.team].password){ success = true; };
+                if(recieved_data.team in database_team){
+                    if(recieved_data.password == database_team[recieved_data.team].password){ success = true; };
                     console.log("login successfull");
                     json_to_send = JSON.stringify( { "method": "login_reply", "successful": success , "team": recieved_data.team});
                     socket.send(json_to_send);
                     json_to_send = JSON.stringify(JSONtoSendProblem(recieved_data.team));
+                    socket.send(json_to_send);
+                    json_to_send = JSON.stringify(
+                        {
+                            "method": "announcement",
+                            "announcement": announcement_str
+                        }
+                    );
                     socket.send(json_to_send);
                 };
                 break;
@@ -130,6 +230,32 @@ ws_server.on('connection', function(socket) {
                         );
                         sockets.forEach(s => s.send(json_to_send));
                         break;
+
+                    if ( database_team[recieved_data.team].chance_remaining <= 0 ) {
+                        json_to_send = JSON.stringify(
+                            {
+                                "team": recieved_data.team,
+                                "skip": true,
+                                "method": "skip_reply",
+                                "success": true
+                            }
+                        )
+                        sockets.forEach(s => s.send(json_to_send));
+                        if(!skipProblem(recieved_data.team)){
+                            json_to_send = JSON.stringify(
+                                {
+                                    "method": "the_end",
+                                    "team": recieved_data.team
+                                }
+                            );
+                            sockets.forEach(s => s.send(json_to_send));
+                            break;
+                        };
+                        json_to_send = JSON.stringify(JSONtoSendProblem(recieved_data.team));
+                        sockets.forEach(s => s.send(json_to_send));
+                        updateDatabase();
+                    };
+                        break;
                     };
                     success =true
                 }else{
@@ -140,7 +266,8 @@ ws_server.on('connection', function(socket) {
                         "team": recieved_data.team,
                         "skip": false,
                         "method": "answer_reply",
-                        "success": success
+                        "success": success,
+                        "chances_remaining": database_team[recieved_data.team].chance_remaining
                     }
                 )
                 sockets.forEach(s => s.send(json_to_send));
@@ -149,20 +276,31 @@ ws_server.on('connection', function(socket) {
                     // socket.send(json_to_send);
                     sockets.forEach(s => s.send(json_to_send));
                 }
+                updateDatabase();
                 break;
             case "skip":
-                skipProblem(recieved_data.team)
                 json_to_send = JSON.stringify(
                     {
-                        "team": team,
+                        "team": recieved_data.team,
                         "skip": true,
                         "method": "skip_reply",
                         "success": true
                     }
                 )
                 sockets.forEach(s => s.send(json_to_send));
+                if(!skipProblem(recieved_data.team)){
+                    json_to_send = JSON.stringify(
+                        {
+                            "method": "the_end",
+                            "team": recieved_data.team
+                        }
+                    );
+                    sockets.forEach(s => s.send(json_to_send));
+                    break;
+                };
                 json_to_send = JSON.stringify(JSONtoSendProblem(recieved_data.team));
                 sockets.forEach(s => s.send(json_to_send));
+                updateDatabase();
                 break;
         }
         // sockets.forEach(s => s.send(json_to_send));
@@ -175,51 +313,69 @@ ws_server.on('connection', function(socket) {
 
 function skipProblem(team){
     console.log("skip Problem for " + team);
-    database.team_list[team].push(database.team_list.current);
+    database_team[team].skipped.push(database_team[team].current);
     return nextProblem(team);
 }
 
 function nextProblem(team){
     console.log("next Problem for " + team);
-    if (database.team_list[team].remaining == []) {
-        database.team_list[team].current = -2;
+    database_team[team].chance_remaining = 5;
+    if (database_team[team].remaining.length == 0) {
+        database_team[team].current = -2;
         return false;
     }else{
-        next_Problem_number = ~~( database.team_list[team].remaining.length * Math.random() );
+        next_Problem_number = ~~( database_team[team].remaining.length * Math.random() );
         console.log(next_Problem_number);
-        console.log(database.team_list[team].remaining[next_Problem_number]);
-        database.team_list[team].finnished.push(database.team_list.current);
-        database.team_list[team].current = database.team_list[team].remaining[next_Problem_number];
-        database.team_list[team].remaining.splice(next_Problem_number, 1)
+        console.log(database_team[team].remaining[next_Problem_number]);
+        if( database_team[team].current != -1 && !database_team[team].skipped.includes( database_team[team].current )){
+            database_team[team].finnished.push(database_team[team].current);
+        }
+        database_team[team].current = database_team[team].remaining[next_Problem_number];
+        database_team[team].remaining.splice(next_Problem_number, 1)
         return true;
     }
 }
 function answerIsCorrct(recieved_json){
-    if (recieved_json.answer == database.problem_list[recieved_json.problem_number].answer){
+    if (recieved_json.answer == database_problem.problem_list[recieved_json.problem_number].answer){
         return true;
     }else{
+        database_team[recieved_json.team].chance_remaining -= 1;
         return false;
     }
 };
 
 function JSONtoSendProblem(team){
-    if(database.team_list[team].current == -1){ nextProblem(team); };
+    if(database_team[team].current == -1){ nextProblem(team); };
     console.log(team)
-    console.log(database.team_list[team])
-    console.log()
-    console.log()
-    let image_path = "images/scout_game_JUL26/" + database.problem_list[database.team_list[team].current].img_path;
+    console.log(database_team[team])
+    let image_path = "images/scout_game_JUL26/" + database_problem.problem_list[database_team[team].current].img_path;
+    // if (database_team[team].current == -1 ) {
+    //     let image_path = "images/scout_game_JUL26/Q-1.jpg" ;
+    // } else {
+    //     image_path = "images/scout_game_JUL26/" + database_problem.problem_list[database_team[team].current].img_path;
+
+    // }
     return {
         "method": "problem",
-        "discription": database.problem_list[database.team_list[team].current].discription,
+        "discription": database_problem.problem_list[database_team[team].current].discription,
         "img_path": image_path,
-        "chance_remaining": database.team_list.chance_remaining,
         "team": team,
-        "finnished_problems": database.team_list.finnished.length(),
-        "remaining_problems": database.team_list.remaining.length()
+        "finnished_problems": database_team[team].finnished.length,
+        "remaining_problems": database_team[team].remaining.length,
+        "chances_remaining": database_team[team].chance_remaining
     };
     return {
         "method": "all_done",
         "team": team,
     }
+}
+
+function updateDatabase(){
+    godmode_sockets.forEach(s => s.send(JSON.stringify(
+        {
+            "method": "teams_score",
+            "teams_score": database_team
+        }
+    )));
+    fs.writeFileSync(database_team_path, JSON.stringify(database_team))
 }

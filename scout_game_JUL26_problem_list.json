@@ -1,0 +1,134 @@
+{
+    "problem_list": [
+        {
+            "img_path": "Q0.jpg",
+            "discription": "這張圖中共有多少隻動物？",
+            "answer": "12"
+        },
+        {
+            "img_path": "Q1.jpg",
+            "discription": "圖中被遮住的路標為何？",
+            "answer": "停車場"
+        },
+        {
+            "img_path": "Q2.jpg",
+            "discription": "請依序打出第1句第二個字，和第2句第二個字",
+            "answer": "點頭"
+        },
+        {
+            "img_path": "Q3.jpg",
+            "discription": "圖中黑色區塊的第二行中文字為何？",
+            "answer": "國民旅遊卡"
+        },
+        {
+            "img_path": "Q4.jpg",
+            "discription": "畫面中的黑色區塊中的英文與數字為何？",
+            "answer": "SEF10"
+        },
+        {
+            "img_path": "Q5.jpg",
+            "discription": "畫面中的黑色區塊中的英文與數字為何？",
+            "answer": "E07"
+        },
+        {
+            "img_path": "Q6.jpg",
+            "discription": "畫面中所指區塊的數字為何？",
+            "answer": "1720"
+        },
+        {
+            "img_path": "Q7.jpg",
+            "discription": "圖片中白色區塊中文字為何",
+            "answer": "鎮店之寶"
+        },
+        {
+            "img_path": "Q8.jpg",
+            "discription": "途中被遮住的店家中文名為何？",
+            "answer": "莫凡彼餐廳"
+        },
+        {
+            "img_path": "Q9.jpg",
+            "discription": "畫面中的黑色區塊中的中文為何？",
+            "answer": "君品酒店"
+        },
+        {
+            "img_path": "Q10.jpg",
+            "discription": "地圖中被遮住的圖示代表什麼？",
+            "answer": "捷運捐血室"
+        },
+        {
+            "img_path": "Q11.jpg",
+            "discription": "這篇文章的名稱為何？",
+            "answer": "近乎佛教徒"
+        },
+        {
+            "img_path": "Q12.jpg",
+            "discription": "畫面中的黑色區塊中的中文為何？",
+            "answer": "立即下載"
+        },
+        {
+            "img_path": "Q13.jpg",
+            "discription": "圖中黑色區塊為何物？(兩個字)",
+            "answer": "時鐘"
+        },
+        {
+            "img_path": "Q14.jpg",
+            "discription": "此風機室的編號為何？",
+            "answer": "M77"
+        },
+        {
+            "img_path": "Q15.jpg",
+            "discription": "此區地下街共有幾個燈籠？",
+            "answer": "82"
+        },
+        {
+            "img_path": "Q16.jpg",
+            "discription": "利用永備尺量此同心圓的最大半徑為幾公尺(無條件進位至小數點後第一位)",
+            "answer": "5.2"
+        },
+        {
+            "img_path": "Q17.jpg",
+            "discription": "此圖中的石頭皆從距離此藝術品幾公尺內發掘？(依據解釋牌回答)",
+            "answer": "20"
+        },
+        {
+            "img_path": "Q18.jpg",
+            "discription": "這張臉譜是誰？",
+            "answer": "關羽"
+        },
+        {
+            "img_path": "Q19.jpg",
+            "discription": "畫面中的黑色區塊中的中文為何？(共10個字)",
+            "answer": "一家人之霹靂民俗藝廊"
+        },
+        {
+            "img_path": "Q20.jpg",
+            "discription": "將第1個字第2個字母、第2個字第7字母、第3個字第2字母、第3個字第4字母、第4個字第1字母重新組合成一個單字(全小寫)",
+            "answer": "scout"
+        },
+        {
+            "img_path": "Q21.jpg",
+            "discription": "以右手邊第一間店的店名找出對應的置物櫃編號，並算出總合。",
+            "answer": "49"
+        },
+        {
+            "img_path": "Q22.jpg",
+            "discription": "此店的門牌號碼為何？",
+            "answer": "117"
+        },
+        {
+            "img_path": "Q23.jpg",
+            "discription": "找出INDEX、MrPink、Y4、台北地下街、捷運台北車站、emon並依序寫出對應英文字母。(全大寫)",
+            "answer": "BDAFCE"
+        },
+        {
+            "img_path": "Q24.jpg",
+            "discription": "圖中白色區塊為何角色？(英文全名)",
+            "answer": "Optimus Prime"
+        },
+        {
+            "img_path": "Q25.jpg",
+            "discription": "誰國花縫反?",
+            "answer": "關皓文"
+        }
+    ]
+}

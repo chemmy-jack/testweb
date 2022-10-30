@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <!-- contains meta information -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="test">
+    <meta name="description" content="this is a test website of Jack's">
+    <meta name="author" content="Chemmy-jack">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <base href="./" target="_blank">
+    <title>GODMODE!!</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- <script src="scripts/scout_game_JUL26.js"></script> -->
+</head>
+<body>
+    <div class="container text-center" id="head">
+        <h1>飛月北車地下街闖關</h1>
+        <h2>GODMODE!!!!!!</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="input-group">
+                <div class="input-group-text" id="announcement">announce</div>
+                <textarea type="text" class="form-control" placeholder="" aria-label="" aria-describedby="announcement-input" id="announcement-input"></textarea>
+            </div>
+            <div class="p-2 text-center btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-success" id="announce-button">announce</button>
+                <button type="button" class="btn btn-primary" id="get-score-button">get score</button>
+                <button type="button" class="btn btn-warning" id="get-problems-and-answers-button">get prolem and answers</button>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="team-score">
+    </div>
+    <div class="container" id="problem-and-answers">
+    </div>
+
+
+    <script>
+        let server_ip = "124.218.222.22";
+        let websocket_port = 8002;
+        let websocket_url = "ws://" + server_ip + ":" + websocket_port;
+
+        const socket = new WebSocket(websocket_url) ;
+
+        try {
+            socket.onopen = function(event) {
+                console.log("socket successful connected to" + websocket_url);
+                console.log(event);
+            }
+        }catch{
+            alert("websocket not established. refresh the page or contact the host.")
+        };
+
+        socket.onmessage = function(event) {
+            var recieved_data = JSON.parse(event.data);
+            console.log(recieved_data);
+            switch (recieved_data.method) {
+                case "announcement":
+                    $("#announcement-input").val(recieved_data.announcement);
+                    break;
+                case "teams_score":
+                    updateTeamsScore(recieved_data.teams_score);
+                    break;
+            };
+        };
+
+        socket.onclose = function(e) {
+            console.log("socket closed");
+            alert("Connection lost, refresh is recommended.")
+        }
+
+        $("#announce-button").click(function(){
+            send_JSON =
+                {
+                    "method": "announce",
+                    "announcement": $("#announcement-input").val()
+                };
+            console.log(send_JSON);
+            socket.send(JSON.stringify(send_JSON));
+        });
+
+        function updateTeamsScore(team_data){
+            console.log(team_data);
+            $("#team-score").text("")
+                $("#team-score").append(
+                    $("<div></div>").addClass("row bg-primary text-light")
+                        .append( $("<div></div>").addClass("col").text("team"))
+                        .append( $("<div></div>").addClass("col").text("password"))
+                        .append( $("<div></div>").addClass("col-1").text("ca"))
+                        .append( $("<div></div>").addClass("col-1").text("c"))
+                        .append( $("<div></div>").addClass("col-1").text("f"))
+                        .append( $("<div></div>").addClass("col-1").text("s"))
+                        .append( $("<div></div>").addClass("col-1").text("r"))
+                )
+            for (team in team_data){
+                $("#team-score").append(
+                    $("<div></div>").addClass("row")
+                        .append( $("<div></div>").addClass("col").text(team))
+                        .append( $("<div></div>").addClass("col").text(team_data[team].password))
+                        .append( $("<div></div>").addClass("col-1").text(team_data[team].chance_remaining))
+                        .append( $("<div></div>").addClass("col-1").text(team_data[team].current))
+                        .append( $("<div></div>").addClass("col-1").text(team_data[team].finnished.length))
+                        .append( $("<div></div>").addClass("col-1").text(team_data[team].skipped.length))
+                        .append( $("<div></div>").addClass("col-1").text(team_data[team].remaining.length))
+                )
+            }
+
+        };
+
+        $("#get-score-button").click(function(){
+            team_data_url = "http://" + server_ip + ":" + "8000" + "/scout_game_JUL26_team_list.json";
+            $.getJSON(team_data_url, function(team_data){
+                updateTeamsScore(team_data);
+            })
+        });
+
+        $("#get-problems-and-answers-button").click(function(){
+            problem_data_url = "http://" + server_ip + ":" + "8000" + "/scout_game_JUL26_problem_list.json";
+            $.getJSON(problem_data_url, function(problem_data){
+                console.log(problem_data);
+                $("#problem-and-answers").text("")
+                for (problem in problem_data.problem_list){
+                    $("#problem-and-answers").append(
+                        $("<div></div>").addClass("row")
+                            .append( $("<div></div>").addClass("col-12").append(
+                                $("<img></img>").addClass("img-fluid img-thumbnail").attr("src", "http://" + server_ip + ":8000/images/scout_game_JUL26/" + problem_data.problem_list[problem].img_path)
+                            ))
+                            .append( $("<div></div>").addClass("col-1").text(problem + ":"))
+                            .append( $("<div></div>").addClass("col").text(problem_data.problem_list[problem].discription))
+                            .append( $("<div></div>").addClass("col-12").text(problem_data.problem_list[problem].answer))
+                    )
+                }
+            })
+        });
+
+        $("textarea").height( $("textarea")[0].scrollHeight );
+        $('textarea').on('keyup keypress', function() {
+                    $(this).height(0);
+                    $(this).height(this.scrollHeight);
+        });
+
+    </script>
+</body>
+</html>
